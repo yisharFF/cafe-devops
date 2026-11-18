@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Café DevOps - Pedidos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #faf6f0;
+            color: #4a3b32;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border: 1px solid #d7ccc8;
+            border-radius: 6px;
+        }
+        h1 {
+            color: #6d4c41;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #d7ccc8;
+            margin: 20px 0;
+        }
+        label {
+            font-weight: bold;
+            font-size: 14px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #bcaaa4;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #6d4c41;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #5d4037;
+        }
+        .notificacion {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #efebe9;
+            border: 1px solid #8d6e63;
+            color: #4e342e;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>☕ Café DevOps</h1>
+        <p>Sistema de pedidos interactivo ejecutándose en un contenedor Docker.</p>
+        <hr>   
+        <h3>Nuevo Pedido de Bebida</h3>
+        <form id="formPedido">
+            <label for="cliente">Nombre del Cliente:</label><br>
+            <input type="text" id="cliente" name="cliente" placeholder="Tu nombre..." required><br>
+            
+            <label for="bebida">Selecciona tu Bebida:</label><br>
+            <select id="bebida" name="bebida">
+                <option value="Café Americano">Café Americano</option>
+                <option value="Capuchino">Capuchino</option>
+                <option value="Latte Vainilla">Latte Vainilla</option>
+                <option value="Chocolate Caliente">Chocolate Caliente</option>
+            </select><br>
+            
+            <button type="submit">Ordenar</button>
+        </form>
+        <div id="alertaExito" class="notificacion"></div>
+    </div>
+    <script>
+        const formulario = document.getElementById('formPedido');
+        const alertaExito = document.getElementById('alertaExito');
+        formulario.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const cliente = document.getElementById('cliente').value;
+            const bebida = document.getElementById('bebida').value;
+            alertaExito.style.display = 'block';
+            alertaExito.innerHTML = `<strong>¡Pedido en camino!</strong><br>¡Gracias, <strong>${cliente}</strong>! Tu orden de <em>${bebida}</em> ha sido registrada con éxito.`;
+            formulario.reset();
+        });
+    </script>
+</body>
+</html>
